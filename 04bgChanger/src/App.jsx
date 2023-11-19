@@ -57,3 +57,11 @@ function App() {
 }
 
 export default App
+
+/*
+   Notes :- 
+   useState is a hook that allows you to add state to your functional components. 
+   The useState hook returns an array with two elements. The first element is the current state value,
+   and the second element is a function that allows you to update the state.
+
+*/
