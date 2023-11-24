@@ -1,4 +1,4 @@
-import conf from "../conf/conf.js";
+import conf from '../conf/conf.js';
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class Service{
@@ -9,9 +9,9 @@ export class Service{
     constructor(){
         this.client
         .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectId)
-        this.databases = new Databases(this.client)
-        this.bucket = new Storage(this.client)
+        .setProject(conf.appwriteProjectId);
+        this.databases = new Databases(this.client);
+        this.bucket = new Storage(this.client);
     }
 
     async createPost({title, slug, content, featuredImage, status, userId}){
@@ -29,9 +29,9 @@ export class Service{
                 }
             )
         } catch (error) {
-            console.log("Appwrite service :: getCurrentUser :: error", error);
+            console.log("Appwrite serive :: createPost :: error", error);
         }
-    } 
+    }
 
     async updatePost(slug, {title, content, featuredImage, status}){
         try {
@@ -44,10 +44,11 @@ export class Service{
                     content,
                     featuredImage,
                     status,
+
                 }
             )
         } catch (error) {
-            console.log("Appwrite service :: getCurrentUser :: error", error);
+            console.log("Appwrite serive :: updatePost :: error", error);
         }
     }
 
@@ -57,10 +58,11 @@ export class Service{
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
+            
             )
             return true
         } catch (error) {
-            console.log("Appwrite service :: getCurrentUser :: error", error); 
+            console.log("Appwrite serive :: deletePost :: error", error);
             return false
         }
     }
@@ -71,9 +73,10 @@ export class Service{
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
+            
             )
         } catch (error) {
-            console.log("Appwrite service :: getCurrentUser :: error", error);
+            console.log("Appwrite serive :: getPost :: error", error);
             return false
         }
     }
@@ -84,10 +87,11 @@ export class Service{
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
+                
 
             )
         } catch (error) {
-            console.log("Appwrite service :: getCurrentUser :: error", error);
+            console.log("Appwrite serive :: getPosts :: error", error);
             return false
         }
     }
@@ -102,7 +106,7 @@ export class Service{
                 file
             )
         } catch (error) {
-            console.log("Appwrite service :: getCurrentUser :: error", error);
+            console.log("Appwrite serive :: uploadFile :: error", error);
             return false
         }
     }
@@ -115,7 +119,7 @@ export class Service{
             )
             return true
         } catch (error) {
-            console.log("Appwrite service :: getCurrentUser :: error", error);
+            console.log("Appwrite serive :: deleteFile :: error", error);
             return false
         }
     }
@@ -127,7 +131,6 @@ export class Service{
         )
     }
 }
-
 
 
 const service = new Service()
