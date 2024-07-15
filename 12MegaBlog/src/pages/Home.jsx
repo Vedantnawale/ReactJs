@@ -4,11 +4,13 @@ import {Container, PostCard} from '../components'
 
 function Home() {
     const [posts, setPosts] = useState([])
+    const [login, setLogin] = useState(false)
 
     useEffect(() => {
         appwriteService.getPosts().then((posts) => {
             if (posts) {
                 setPosts(posts.documents)
+                setLogin(true)
             }
         })
     }, [])
@@ -19,9 +21,13 @@ function Home() {
                 <Container>
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
+                        { login != true ?
                             <h1 className="text-2xl font-bold hover:text-gray-500">
                                 Login to read posts
+                            </h1> : <h1 className="text-2xl font-bold hover:text-gray-500">
+                                No Post Available Yet
                             </h1>
+                            }
                         </div>
                     </div>
                 </Container>
